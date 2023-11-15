@@ -2,7 +2,7 @@ import streamlit as st
 from gekko import GEKKO
 import numpy as np
 import pandas as pd
-import locale
+#import locale
 
 import plotly.graph_objs as go
 from plotly.subplots import make_subplots
@@ -10,7 +10,7 @@ from plotly.subplots import make_subplots
 #fom itertools import cycle
 
 #para que la moneda salga con signo pesos
-locale.setlocale(locale.LC_MONETARY, "en_US.UTF-8" ) #en_US
+#locale.setlocale(locale.LC_MONETARY, "en_US.UTF-8" ) #en_US
 
 
 
@@ -202,8 +202,9 @@ def optimizar(pN
     df_final=df_final.T #trasponer
     st.write(df_final)    
     st.write("Valor óptimo de TotalCosto :")
-    total_cost_Formato=locale.format_string("$%i",round(total_cost),grouping=True,monetary=True) 
+    #total_cost_Formato=locale.format_string("$%i",round(total_cost),grouping=True,monetary=True) 
     #total_cost_Formato=locale.currency(total_cost_Formato,grouping=True)
+    total_cost_Formato=round(total_cost)
     st.subheader(total_cost_Formato )
     st.write("Estado de la optimización:", m.options.APPSTATUS)
 
