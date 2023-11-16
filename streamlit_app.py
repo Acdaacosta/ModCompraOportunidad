@@ -245,7 +245,7 @@ def main():
     
     with col2:
          lPrecio_nal= st.number_input("Precio Nacional", value=10000)
-         lPrecio_imp= st.number_input("Preicio Importado", value=15000)
+         lPrecio_imp= st.number_input("Precio Importado", value=15000)
          
     with col3:     
          lInv_ini= st.number_input("Inventario Inicial", value=120000)
