@@ -200,6 +200,7 @@ def optimizar(pN
     st.subheader("Resultados:")
     df_final=df_final.set_index('Descripcion')
     df_final=df_final.T #trasponer
+    df_final=df_final.round(0)                               
     st.write(df_final)    
     st.write("Valor óptimo de TotalCosto :")
     #total_cost_Formato=locale.format_string("$%i",round(total_cost),grouping=True,monetary=True) 
