@@ -206,7 +206,8 @@ def optimizar(pN
     #total_cost_Formato=locale.format_string("$%i",round(total_cost),grouping=True,monetary=True) 
     #total_cost_Formato=locale.currency(total_cost_Formato,grouping=True)
     total_cost_Formato=round(total_cost)
-    st.subheader(total_cost_Formato )
+    total_cost_Formato_con_miles = "{:,.0f}".format(total_cost_Formato).replace(",", ".")                               
+    st.subheader(total_cost_Formato_con_miles )
     st.write("Estado de la optimización:", m.options.APPSTATUS)
 
     st.subheader("Gráfico de Barras y Líneas")
