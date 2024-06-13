@@ -1,11 +1,21 @@
 # model.py
 from gekko import GEKKO
 import pandas as pd
+import streamlit as st
 class ModCompraModelo:
     def __init__(self):
         pass
 
     def optimizar(self,pN, pInv_min, pInv_max, pPrecio_nal, pPrecio_imp, pInv_ini, pCosto_uni_inv_ini, pConsumo_pn):
+        
+        st.write(f"pN: {pN}")
+        st.write(f"pInv_min: {pInv_min}")
+        st.write(f"pInv_max: {pInv_max}")
+        st.write(f"pPrecio_nal: {pPrecio_nal}")
+        st.write(f"pPrecio_imp: {pPrecio_imp}")
+        st.write(f"pInv_ini: {pInv_ini}")
+        st.write(f"pCosto_uni_inv_ini: {pCosto_uni_inv_ini}")
+        st.write(f"pConsumo_pn: {pConsumo_pn}")
         m = GEKKO(remote=False)
 
         # Parámetros
