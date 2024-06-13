@@ -21,11 +21,12 @@ class ModCompraModelo:
         costo_uni_inv_ini = pCosto_uni_inv_ini
         
         consumo_pn = pConsumo_pn.values.tolist()
+        mul_25000 = 25000  # Múltiplo deseado
         comp_nal_pn = m.Array(m.Var, n, lb=0, ub=p_Cap_compra_nal, integer=True)
-        comp_imp_real = m.Array(m.Var, n, lb=0, ub=p_Cap_compra_imp, integer=True)
+        comp_imp_pn = m.Array(m.Var, n, lb=0, ub=(p_Cap_compra_imp//mul_25000) * mul_25000, integer=True)
         inv_pn = m.Array(m.Var, n + 1, lb=inv_min, ub=inv_max, integer=True)
 
-        comp_imp_pn = m.Array(m.Var, n)
+   
 
 
         costo_com_pn = m.Array(m.Var, n)
@@ -40,11 +41,11 @@ class ModCompraModelo:
         m.Equation(costo_uni_inv_pn[-1] == costo_uni_inv_ini)
 
         # Variable auxiliar para asegurar múltiplos de 25000
-        mul_25000 = 25000  # Múltiplo deseado
+       
         
-        for i in range(n):
+        #for i in range(n):
             # Relacionar las variables auxiliares con las reales
-              m.Equation(comp_imp_pn[i] == (comp_imp_real[i]  // mul_25000)* mul_25000)
+           #   m.Equation(comp_imp_pn[i] == (comp_imp_pn[i]  // mul_25000)* mul_25000)
 
         for i in range(n):
             m.Equation((costo_com_pn[i] == comp_nal_pn[i] * precio_nal) + (comp_imp_pn[i] * precio_imp))
