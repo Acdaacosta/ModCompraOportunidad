@@ -17,7 +17,8 @@ class ModCompraControlador:
 
         if archivo_csv is not None:
             df_archivo = pd.read_csv(archivo_csv, delimiter=';')
-            lN = len(df_archivo)
+            lN = df_archivo.shape[1]
+            
             edited_df = st.data_editor(df_archivo)
             if st.button('Optimizar'):
                 Modelo=ModCompraModelo()

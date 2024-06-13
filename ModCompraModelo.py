@@ -16,6 +16,15 @@ class ModCompraModelo:
         st.write(f"pInv_ini: {pInv_ini}")
         st.write(f"pCosto_uni_inv_ini: {pCosto_uni_inv_ini}")
         st.write(f"pConsumo_pn: {pConsumo_pn}")
+
+        print(f"pN: {pN}")
+        print(f"pInv_min: {pInv_min}")
+        print(f"pInv_max: {pInv_max}")
+        print(f"pPrecio_nal: {pPrecio_nal}")
+        print(f"pPrecio_imp: {pPrecio_imp}")
+        print(f"pInv_ini: {pInv_ini}")
+        print(f"pCosto_uni_inv_ini: {pCosto_uni_inv_ini}")
+        print(f"pConsumo_pn: {pConsumo_pn}")
         m = GEKKO(remote=False)
 
         # Parámetros
