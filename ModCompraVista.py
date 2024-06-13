@@ -10,7 +10,7 @@ class ModCompraVista:
         pass
     def mostrar_banner(self):
         st.set_page_config(page_title="Optimización de Inventarios", page_icon=":bar_chart:", layout="wide")
-        st.title(':bar_chart: Modelo Compra Oportunidad Y')
+        st.title(':bar_chart: Modelo Compra Oportunidad z')
 
     def mostrar_formulario(self):
         col1, col2, col3 = st.columns(3)
