@@ -44,7 +44,7 @@ class ModCompraModelo:
         
         for i in range(n):
             # Relacionar las variables auxiliares con las reales
-              m.Equation(comp_imp_pn[i] == comp_imp_real[i] * mul_25000)
+              m.Equation(comp_imp_pn[i] == (comp_imp_real[i]  // mul_25000)* mul_25000)
 
         for i in range(n):
             m.Equation((costo_com_pn[i] == comp_nal_pn[i] * precio_nal) + (comp_imp_pn[i] * precio_imp))
