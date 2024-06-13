@@ -17,14 +17,16 @@ class ModCompraVista:
         with col1:
             inv_min = st.number_input("Inventario Minimo", value=120000)
             inv_max = st.number_input("Inventario Maximo", value=1200000)
+            Cap_compra_nal=st.number_input("Capacidad Compra Nacional", value=40000)
         with col2:
             precio_nal = st.number_input("Precio Nacional", value=10000)
             precio_imp = st.number_input("Precio Importado", value=15000)
+            Cap_compra_imp=st.number_input("Capacidad Compra Importada", value=40000)
         with col3:
             inv_ini = st.number_input("Inventario Inicial", value=120000)
             costo_uni_inv_ini = st.number_input("Costo Unitario Inv Ini", value=10707)
         archivo_csv = st.file_uploader(":open_file_folder: Cargar archivo CSV", type=["csv"])
-        return inv_min, inv_max, precio_nal, precio_imp, inv_ini, costo_uni_inv_ini, archivo_csv
+        return inv_min, inv_max, precio_nal, precio_imp, inv_ini, costo_uni_inv_ini, archivo_csv,Cap_compra_nal,Cap_compra_imp
 
     def mostrar_resultados(self,df_resultados, total_cost, status):
         st.subheader("Resultados:")

@@ -6,25 +6,9 @@ class ModCompraModelo:
     def __init__(self):
         pass
 
-    def optimizar(self,pN, pInv_min, pInv_max, pPrecio_nal, pPrecio_imp, pInv_ini, pCosto_uni_inv_ini, pConsumo_pn):
+    def optimizar(self,pN, pInv_min, pInv_max, pPrecio_nal, pPrecio_imp, pInv_ini, pCosto_uni_inv_ini, pConsumo_pn,p_Cap_compra_nal,p_Cap_compra_imp ):
         
-        st.write(f"pN: {pN}")
-        st.write(f"pInv_min: {pInv_min}")
-        st.write(f"pInv_max: {pInv_max}")
-        st.write(f"pPrecio_nal: {pPrecio_nal}")
-        st.write(f"pPrecio_imp: {pPrecio_imp}")
-        st.write(f"pInv_ini: {pInv_ini}")
-        st.write(f"pCosto_uni_inv_ini: {pCosto_uni_inv_ini}")
-        st.write(f"pConsumo_pn: {pConsumo_pn}")
-
-        print(f"pN: {pN}")
-        print(f"pInv_min: {pInv_min}")
-        print(f"pInv_max: {pInv_max}")
-        print(f"pPrecio_nal: {pPrecio_nal}")
-        print(f"pPrecio_imp: {pPrecio_imp}")
-        print(f"pInv_ini: {pInv_ini}")
-        print(f"pCosto_uni_inv_ini: {pCosto_uni_inv_ini}")
-        print(f"pConsumo_pn: {pConsumo_pn}")
+     
         m = GEKKO(remote=False)
 
         # Parámetros
@@ -37,8 +21,8 @@ class ModCompraModelo:
         costo_uni_inv_ini = pCosto_uni_inv_ini
         
         consumo_pn = pConsumo_pn.values.tolist()
-        comp_nal_pn = m.Array(m.Var, n, lb=0, ub=40000, integer=True)
-        comp_imp_pn = m.Array(m.Var, n, lb=0, ub=40000, integer=True)
+        comp_nal_pn = m.Array(m.Var, n, lb=0, ub=p_Cap_compra_nal, integer=True)
+        comp_imp_pn = m.Array(m.Var, n, lb=0, ub=p_Cap_compra_imp, integer=True)
         inv_pn = m.Array(m.Var, n + 1, lb=inv_min, ub=inv_max, integer=True)
 
         costo_com_pn = m.Array(m.Var, n)
