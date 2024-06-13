@@ -5,7 +5,7 @@ from plotly.subplots import make_subplots
 
 def mostrar_banner():
     st.set_page_config(page_title="Optimización de Inventarios", page_icon=":bar_chart:", layout="wide")
-    st.title(':bar_chart: Modelo Compra Oportunidad')
+    st.title(':bar_chart: Modelo Compra Oportunidad X')
 
 def mostrar_formulario():
     col1, col2, col3 = st.columns(3)
