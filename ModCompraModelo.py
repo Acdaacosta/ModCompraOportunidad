@@ -5,7 +5,7 @@ class ModCompraModelo:
     def __init__(self):
         pass
 
-    def optimizar(pN, pInv_min, pInv_max, pPrecio_nal, pPrecio_imp, pInv_ini, pCosto_uni_inv_ini, pConsumo_pn):
+    def optimizar(self,pN, pInv_min, pInv_max, pPrecio_nal, pPrecio_imp, pInv_ini, pCosto_uni_inv_ini, pConsumo_pn):
         m = GEKKO(remote=False)
 
         # Parámetros
