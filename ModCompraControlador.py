@@ -24,7 +24,7 @@ class ModCompraControlador:
                 Modelo=ModCompraModelo()
                 resultados, total_cost, status,l_mensaje = Modelo.optimizar(lN, inv_min, inv_max, precio_nal, precio_imp, inv_ini, costo_uni_inv_ini, edited_df,Cap_compra_nal,Cap_compra_imp )
                 vista.mostrar_resultados(resultados, total_cost, status,l_mensaje)
-                vista.plotly_multi_bar_line_chart(edited_df.columns, resultados["Inventario"], edited_df.values.tolist()[0], resultados["Compra Nacional"] + resultados["Compra Importada"])
+                vista.plotly_multi_bar_line_chart(edited_df.columns, resultados["Inventario"], edited_df.values.tolist()[0], resultados["Compra Nacional"] + resultados["Compra Importada"],status)
 
     #if __name__ == '__main__':
      #   main()
