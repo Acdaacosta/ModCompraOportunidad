@@ -43,9 +43,9 @@ class ModCompraModelo:
         # Variable auxiliar para asegurar múltiplos de 25000
        
         
-        #for i in range(n):
-            # Relacionar las variables auxiliares con las reales
-           #   m.Equation(comp_imp_pn[i] == (comp_imp_pn[i]  // mul_25000)* mul_25000)
+        
+             #Relacionar las variables auxiliares con las reales
+            
 
         for i in range(n):
             m.Equation((costo_com_pn[i] == comp_nal_pn[i] * precio_nal) + (comp_imp_pn[i] * precio_imp))
@@ -56,6 +56,8 @@ class ModCompraModelo:
             m.Equation(costo_trans_pn[i] == comp_imp_pn[i] * 187)
             m.Equation(costo_cap_pn[i] == costo_inv_pn[i] * ((1 + 0.12) ** (1 / 52) - 1))
             m.Equation(costo_total_pn[i] == costo_com_pn[i] + costo_cap_pn[i] + costo_alm_pn[i] + costo_trans_pn[i])
+            #nueva restriccion
+            m.Equation(comp_imp_pn[i] == ((comp_imp_pn[i]  / 25000))* 25000)
 
         m.Obj(sum(costo_total_pn))
         m.solve(disp=False)
