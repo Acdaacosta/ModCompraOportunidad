@@ -10,7 +10,7 @@ class ModCompraVista:
         pass
     def mostrar_banner(self):
         st.set_page_config(page_title="Optimización de Inventarios", page_icon=":bar_chart:", layout="wide")
-        st.title(':bar_chart: Modelo Compra Oportunidad x')
+        st.title(':bar_chart: Modelo Compra Oportunidad y')
 
     def mostrar_formulario(self):
         col1, col2, col3 = st.columns(3)
@@ -37,7 +37,9 @@ class ModCompraVista:
             total_cost_Formato_con_miles = "{:,.0f}".format(total_cost_Formato).replace(",", ".")                               
             st.subheader(total_cost_Formato_con_miles )
             st.write("Estado de la optimización:", status)
-        st.write(l_mensaje)
+            st.write(l_mensaje)
+        else:
+            st.subheader(l_mensaje)
     def plotly_multi_bar_line_chart(self,categorias, datos_barras_1, datos_barras_2, datos_lineas,status):
         if status==1 :
             fig = make_subplots(specs=[[{"secondary_y": True}]])
@@ -46,3 +48,5 @@ class ModCompraVista:
             fig.add_trace(go.Scatter(x=categorias, y=datos_lineas, mode='lines', name='Compras'), secondary_y=False)
             fig.update_layout(title_text='Gráfico de Inventarios, Consumos y Compras', xaxis_title='Periodos', yaxis_title='Inventarios', yaxis2_title='Compras y Consumos')
             st.plotly_chart(fig)
+        
+              
