@@ -21,5 +21,5 @@ def test():
     print(resultados)
     print(lmensaje)
 if __name__ == '__main__':
-    test()
+    main()
 
