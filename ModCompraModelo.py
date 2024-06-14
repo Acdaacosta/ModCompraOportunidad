@@ -134,4 +134,4 @@ class ModCompraModelo:
             e_mensaje="Hubo un error al optimizar el modelo. "+str(e)
             # Captura la excepción si no se encontró solución
                    # Muestra el mensaje de error específico
-            return None, None, None,e_mensaje  # Retorna valores nulos o vacíos según convenga
+            return None, None, -1,e_mensaje  # Retorna valores nulos o vacíos según convenga
