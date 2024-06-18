@@ -69,6 +69,11 @@ class ModCompraModelo:
             m.Equation(costo_cap_pn[0] == 0)
             m.Equation(comp_imp_pn[0] == 0)
             m.Equation(costo_trans_pn[0] == 0)
+            m.Equation(costo_total_pn[0] == 0)
+            m.Equation(costo_alm_pn[0] == 0)
+            m.Equation(comp_nal_pn[0] == 0)
+            #m.Equation(costo_com_pn[0] == 0)
+            #m.Equation(inv_pn[0] == 0)
             for i in range(1, n ):
                 m.Equation((costo_com_pn[i] == m.abs(comp_nal_pn[i] * precio_nal) + (comp_imp_pn[i] * precio_imp)))
                 m.Equation(inv_pn[i] == inv_pn[i - 1] + comp_imp_pn[i] + comp_nal_pn[i] - consumo_pn[0][i])
@@ -77,12 +82,13 @@ class ModCompraModelo:
                 m.Equation(costo_inv_pn[i] == inv_pn[i]*costo_uni_inv_pn[i])
                 m.Equation(costo_alm_pn[i] == inv_pn[i] * 315)
                 #m.Equation(costo_trans_pn[i] == m.abs(comp_imp_pn[i]) * 187)
-               # m.Equation(costo_trans_pn[i] == int(comp_imp_pn[i]))
+                #m.Equation(costo_trans_pn[i] == m.abs(comp_imp_pn[i]) )
+                m.Equation(costo_trans_pn[i] == comp_imp_pn[i]+100)#error *187
                 m.Equation(costo_cap_pn[i] == costo_inv_pn[i] * ((1 + 0.12) ** (1 / 52) - 1))
                 #costo_com_pn[i] 
                 #m.Equation(costo_total_pn[i] == costo_com_pn[i] +costo_cap_pn[i] + costo_alm_pn[i] + costo_trans_pn[i])
-
-            m.Obj(sum(inv_pn))
+                m.Equation(costo_total_pn[i] == costo_com_pn[i] +costo_cap_pn[i] + costo_alm_pn[i] + costo_trans_pn[i])
+            m.Obj(sum(costo_total_pn))
             m.solve(disp=False)
             print("costo_trans_pn")
             print(costo_trans_pn)
@@ -160,8 +166,8 @@ if __name__ == "__main__":
     pConsumo_pn = pd.DataFrame({
         'Periodo 1': [0], 'Periodo 2': [0], 'Periodo 3': [0], 'Periodo 4': [0],
         'Periodo 5': [0], 'Periodo 6': [0], 'Periodo 7': [0], 'Periodo 8': [0],
-        'Periodo 9': [0], 'Periodo 10': [0], 'Periodo 11': [10000], 'Periodo 12': [20000],
-        'Periodo 13': [30000], 'Periodo 14': [40000], 'Periodo 15': [50000], 'Periodo 16': [60000],
+        'Periodo 9': [0], 'Periodo 10': [0], 'Periodo 11': [100000], 'Periodo 12': [100000],
+        'Periodo 13': [100000], 'Periodo 14': [40000], 'Periodo 15': [50000], 'Periodo 16': [60000],
         'Periodo 17': [70000]
     })
     p_Cap_compra_nal = 40000
