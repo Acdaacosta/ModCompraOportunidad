@@ -151,3 +151,39 @@ class ModCompraModelo:
         except Exception as e:
             e_mensaje = "Hubo un error al optimizar el modelo. " + str(e)
             return None, None, -1, e_mensaje
+
+# Ejemplo de uso
+if __name__ == "__main__":
+    # Definir parámetros de ejemplo
+    pN = 17
+    pInv_min = 120000
+    pInv_max = 1200000
+    pPrecio_nal = 13200
+    pPrecio_imp = 19078
+    pInv_ini = 120000
+    pCosto_uni_inv_ini = 10707
+    P_costo_trans=187
+    p_costo_alm=315
+    pConsumo_pn = pd.DataFrame({
+        'Periodo 1': [0], 'Periodo 2': [0], 'Periodo 3': [0], 'Periodo 4': [0],
+        'Periodo 5': [0], 'Periodo 6': [0], 'Periodo 7': [0], 'Periodo 8': [0],
+        'Periodo 9': [0], 'Periodo 10': [0], 'Periodo 11': [100000], 'Periodo 12': [100000],
+        'Periodo 13': [100000], 'Periodo 14': [100000], 'Periodo 15': [100000], 'Periodo 16': [100000],
+        'Periodo 17': [100000]
+    })
+    p_Cap_compra_nal = 40000
+    p_Cap_compra_imp = 40000
+
+    # Crear instancia del modelo
+    modelo = ModCompraModelo()
+
+    # Optimizar
+    df_results, total_cost, status, message = modelo.optimizar(pN, pInv_min, pInv_max, pPrecio_nal, pPrecio_imp, pInv_ini, pCosto_uni_inv_ini, pConsumo_pn, p_Cap_compra_nal, p_Cap_compra_imp,p_costo_alm,P_costo_trans)
+
+    # Mostrar resultados
+    if status != -1:
+        print("Resultados:")
+        print(df_results[1:].applymap(lambda x: '{:,.0f}'.format(x).replace(',', '.') if isinstance(x, (int, float)) else x))
+        print("Costo Total:", total_cost)
+    else:
+        print("Error:", message)

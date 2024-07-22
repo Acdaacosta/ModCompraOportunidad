@@ -18,20 +18,24 @@ class ModCompraVista:
             inv_min = st.number_input("Inventario Minimo", value=120000)
             inv_max = st.number_input("Inventario Maximo", value=1200000)
             Cap_compra_nal=st.number_input("Capacidad Compra Nacional", value=40000)
+            Cap_trans=st.number_input("Costo Transporte", value=187)
         with col2:
             precio_nal = st.number_input("Precio Nacional", value=10000)
             precio_imp = st.number_input("Precio Importado", value=15000)
+            precio_imp_merma = st.number_input("Precio Importado % Merma", value=1.5)
             Cap_compra_imp=st.number_input("Capacidad Compra Importada", value=40000)
         with col3:
             inv_ini = st.number_input("Inventario Inicial", value=120000)
             costo_uni_inv_ini = st.number_input("Costo Unitario Inv Ini", value=10707)
+            costo_alm = st.number_input("Costo Almacenamiento", value=315)
         archivo_csv = st.file_uploader(":open_file_folder: Cargar archivo CSV", type=["csv"])
-        return inv_min, inv_max, precio_nal, precio_imp, inv_ini, costo_uni_inv_ini, archivo_csv,Cap_compra_nal,Cap_compra_imp
+        return inv_min, inv_max, precio_nal, precio_imp, inv_ini, costo_uni_inv_ini, archivo_csv,Cap_compra_nal,Cap_compra_imp,costo_alm,Cap_trans,precio_imp_merma
 
     def mostrar_resultados(self,df_resultados, total_cost, status,l_mensaje):
         if status==1 :
             st.subheader("Resultados:")
-            st.write(df_resultados)
+            
+            st.write(df_resultados[1:].applymap(lambda x: '{:,.0f}'.format(x).replace(',', '.') if isinstance(x, (int, float)) else x))
             st.write("Valor óptimo de TotalCosto :")
             total_cost_Formato=round(total_cost)
             total_cost_Formato_con_miles = "{:,.0f}".format(total_cost_Formato).replace(",", ".")                               
