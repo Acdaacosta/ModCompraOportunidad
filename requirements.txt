@@ -1,4 +1,0 @@
-gekko==1.0.6
-plotly==5.9.0
-Pyomo==6.7.3
-Ipopt
