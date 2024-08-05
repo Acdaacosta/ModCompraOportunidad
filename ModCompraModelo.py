@@ -13,7 +13,7 @@ class ModCompraModelo:
         try:
 
             ipopt_path = os.getenv("IPOPT_PATH") 
-            exe_local_path = "ipopt.exe"
+            exe_local_path = "Ipopt-3.11.8-linux.zip"
             # Descargar el archivo ipopt.exe desde GitHub
             @st.cache_data
             def download_exe(url, save_path):
