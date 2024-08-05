@@ -2,7 +2,10 @@ import pandas as pd
 import numpy as np
 import pyomo.environ as pyo
 import os
+import requests
+import streamlit as st
 class ModCompraModelo:
+    
     def __init__(self):
         pass
 
@@ -10,6 +13,21 @@ class ModCompraModelo:
         try:
 
             ipopt_path = os.getenv("IPOPT_PATH") 
+            exe_local_path = "ipopt.exe"
+            # Descargar el archivo ipopt.exe desde GitHub
+            @st.cache_data
+            def download_exe(url, save_path):
+                response = requests.get(url)
+                with open(save_path, 'wb') as f:
+                    f.write(response.content)
+            if not os.path.exists(exe_local_path):
+                st.write("Descargando solver IPOPT...")
+                download_exe(ipopt_path, exe_local_path)
+                st.write("Descarga completada.")   
+            if os.name != 'nt':  # No es necesario en Windows
+                st.write("Estableciendo permisos de ejecución...")
+                os.chmod(ipopt_path, 0o755)
+                st.write("Permisos establecidos.")       
             #ipopt_path =r"C:\daacosta\Python\ipopt\Ipopt-3.14.16\bin\ipopt.exe"
             #ipopt_path ="https://github.com/Acdaacosta/ModCompraOportunidad/blob/main/ipopt.exe"
             # Parámetros
@@ -88,7 +106,7 @@ class ModCompraModelo:
             model.objetivo = pyo.Objective(rule=objetivo, sense=pyo.minimize)  # Cambia a minimize
 
             # Resolver el modelo usando un solver NLP 
-            solver = pyo.SolverFactory('ipopt', executable=ipopt_path)  # Cambia el solver a ipopt
+            solver = pyo.SolverFactory('ipopt', executable=exe_local_path)  # Cambia el solver a ipopt
 
             result = solver.solve(model, tee=False)  # tee=True para ver el output del solver
             #print()
