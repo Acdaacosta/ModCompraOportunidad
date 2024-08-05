@@ -1,11 +1,17 @@
 from ModCompraControlador import ModCompraControlador
+import os
+import platform
 #borrar
 import streamlit as st
 import pandas as pd
 from ModCompraModelo import ModCompraModelo
 def main():
-    controlador=ModCompraControlador()
-    controlador.main()
+    #controlador=ModCompraControlador()
+    #controlador.main()
+    os_name = os.name  # 'posix' para sistemas Unix (Linux, macOS) y 'nt' para Windows
+    platform_name = platform.system()  # 'Linux', 'Windows', 'Darwin' (macOS
+    st.write(f"Nombre del sistema operativo (os.name): {os_name}")
+    st.write(f"Nombre del sistema operativo (platform.system()): {platform_name}")
 def test():
     #print("inicio")
     pConsumo_pn = pd.read_csv(r'C:\Users\ACdaacosta\Downloads\DatosPrueba.csv',delimiter=';')
