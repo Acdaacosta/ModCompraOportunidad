@@ -26,7 +26,7 @@ class ModCompraModelo:
                 st.write("Descarga completada.")   
             if os.name != 'nt':  # No es necesario en Windows
                 st.write("Estableciendo permisos de ejecución...")
-                os.chmod(ipopt_path, 0o755)
+                os.chmod(exe_local_path, 0o755)
                 st.write("Permisos establecidos.")       
             #ipopt_path =r"C:\daacosta\Python\ipopt\Ipopt-3.14.16\bin\ipopt.exe"
             #ipopt_path ="https://github.com/Acdaacosta/ModCompraOportunidad/blob/main/ipopt.exe"
